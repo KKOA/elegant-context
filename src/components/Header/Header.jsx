@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-
+import './Header.css';
 import CartModal from '../CartModal/CartModal.jsx';
 
 export default function Header({ cart, onUpdateCartItemQuantity }) {

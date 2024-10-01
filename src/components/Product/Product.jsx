@@ -1,3 +1,5 @@
+import './Product.css';
+
 export default function Product({
 	id,
 	image,

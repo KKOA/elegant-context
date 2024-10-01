@@ -1,5 +1,6 @@
 import { DUMMY_PRODUCTS } from '../../data/dummy-products.js';
 import Product from '..//Product/Product.jsx';
+import './Shop.css';
 
 export default function Shop({ onAddItemToCart }) {
 	return (
