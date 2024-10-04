@@ -6,11 +6,13 @@ function App() {
 	return (
 		<>
 			<CartContextProvider>
-				<Header
+				<Header />
+				<Shop />
+				{/* <Header
 					cart={shoppingCart}
 					onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
 				/>
-				<Shop onAddItemToCart={handleAddItemToCart} />
+				<Shop onAddItemToCart={handleAddItemToCart} /> */}
 			</CartContextProvider>
 		</>
 	);

@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { CartContext } from "../../store/CartContext";
 import CartItem from "../CartItem/CartItem.jsx";
 
-export default function Cart({ items, onUpdateItemQuantity }) {
+export default function Cart(/*{ items, onUpdateItemQuantity }*/) {
+
+	const cartCtx = useContext(CartContext);
 
 	function renderCartContents(items) {
 		if (items.length === 0) {
@@ -10,7 +14,10 @@ export default function Cart({ items, onUpdateItemQuantity }) {
 			<ul id="cart-items">
 				{items.map((item) => {
 					return (
-						<CartItem key={item.id} item={item} onUpdateItemQuantity={onUpdateItemQuantity} />
+						<>
+							<CartItem key={item.id} item={item} />
+							{/* <CartItem key={item.id} item={item} onUpdateItemQuantity={onUpdateItemQuantity} /> */}
+						</>
 					);
 				})}
 			</ul>
@@ -34,8 +41,8 @@ export default function Cart({ items, onUpdateItemQuantity }) {
 
 	return (
 		<div id="cart">
-			{renderCartContents(items)}
-			{renderCartTotal(items)}
+			{renderCartContents(cartCtx.items)}
+			{renderCartTotal(cartCtx.items)}
 		</div>
 	);
 }
