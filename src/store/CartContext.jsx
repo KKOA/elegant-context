@@ -99,6 +99,13 @@ const CartContextProvider = ({ children }) => { //5
 				items: updatedItems,
 			};
 		});*/
+		const action = {
+			type: "ADD_ITEM",
+			payload: {
+				id
+			}
+		}
+		ShoppingCartDispatch(action);
 	}
 
 	function handleUpdateCartItemQuantity(productId, amount) {
@@ -125,6 +132,14 @@ const CartContextProvider = ({ children }) => { //5
 				items: updatedItems,
 			};
 		});*/
+		const action = {
+			type: "UPDATE_ITEM_QUANTITY",
+			payload: {
+				productId,
+				amount
+			}
+		}
+		ShoppingCartDispatch(action);
 	}
 
 	const ctxValue = {
