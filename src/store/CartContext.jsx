@@ -6,8 +6,8 @@
  * 4) export variable
  * 5) Create functional
  * 6) Move state logic in functional component
- * 8) return props.children wrapped in Context.Provider
- * 9) export functional component
+ * 7) return props.children wrapped in Context.Provider
+ * 8) export functional component
  * 
  */
 
@@ -63,42 +63,9 @@ const CartContextProvider = ({ children }) => { //5
 	const initialState = {
 		items: [],
 	};
-	const [shoppingCartState, ShoppingCartDispatch] = useReducer(shoppingCartReducer, initialState);
-
-	//6
-	// const [shoppingCart, setShoppingCart] = useState({
-	// 	items: [],
-	// });
+	const [shoppingCartState, ShoppingCartDispatch] = useReducer(shoppingCartReducer, initialState); //6
 
 	function handleAddItemToCart(id) {
-		/*setShoppingCart((prevShoppingCart) => {
-			const updatedItems = [...prevShoppingCart.items];
-
-			const existingCartItemIndex = updatedItems.findIndex(
-				(cartItem) => cartItem.id === id
-			);
-			const existingCartItem = updatedItems[existingCartItemIndex];
-
-			if (existingCartItem) {
-				const updatedItem = {
-					...existingCartItem,
-					quantity: existingCartItem.quantity + 1,
-				};
-				updatedItems[existingCartItemIndex] = updatedItem;
-			} else {
-				const product = DUMMY_PRODUCTS.find((product) => product.id === id);
-				updatedItems.push({
-					id: id,
-					name: product.title,
-					price: product.price,
-					quantity: 1,
-				});
-			}
-
-			return {
-				items: updatedItems,
-			};
-		});*/
 		const action = {
 			type: "ADD_ITEM",
 			payload: {
@@ -109,29 +76,6 @@ const CartContextProvider = ({ children }) => { //5
 	}
 
 	function handleUpdateCartItemQuantity(productId, amount) {
-		/*
-		setShoppingCart((prevShoppingCart) => {
-			const updatedItems = [...prevShoppingCart.items];
-			const updatedItemIndex = updatedItems.findIndex(
-				(item) => item.id === productId
-			);
-
-			const updatedItem = {
-				...updatedItems[updatedItemIndex],
-			};
-
-			updatedItem.quantity += amount;
-
-			if (updatedItem.quantity <= 0) {
-				updatedItems.splice(updatedItemIndex, 1);
-			} else {
-				updatedItems[updatedItemIndex] = updatedItem;
-			}
-
-			return {
-				items: updatedItems,
-			};
-		});*/
 		const action = {
 			type: "UPDATE_ITEM_QUANTITY",
 			payload: {
@@ -156,4 +100,4 @@ const CartContextProvider = ({ children }) => { //5
 	);
 }
 
-export default CartContextProvider; //9
+export default CartContextProvider; //8

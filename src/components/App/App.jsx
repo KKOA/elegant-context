@@ -8,11 +8,6 @@ function App() {
 			<CartContextProvider>
 				<Header />
 				<Shop />
-				{/* <Header
-					cart={shoppingCart}
-					onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-				/>
-				<Shop onAddItemToCart={handleAddItemToCart} /> */}
 			</CartContextProvider>
 		</>
 	);

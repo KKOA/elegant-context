@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../store/CartContext";
 import CartItem from "../CartItem/CartItem.jsx";
 
-export default function Cart(/*{ items, onUpdateItemQuantity }*/) {
+export default function Cart() {
 
 	const cartCtx = useContext(CartContext);
 
@@ -16,7 +16,6 @@ export default function Cart(/*{ items, onUpdateItemQuantity }*/) {
 					return (
 						<>
 							<CartItem key={item.id} item={item} />
-							{/* <CartItem key={item.id} item={item} onUpdateItemQuantity={onUpdateItemQuantity} /> */}
 						</>
 					);
 				})}
