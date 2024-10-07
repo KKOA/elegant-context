@@ -11,7 +11,7 @@
  * 
  */
 
-import { createContext, /* useState,*/ useReducer } from "react"; //(1)
+import { createContext, useReducer } from "react"; //(1)
 import shoppingCartReducer from "./CartReducer.js";
 import actionCreator from "./CartAction.js";
 
