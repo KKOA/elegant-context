@@ -13,6 +13,7 @@
 
 import { createContext, /* useState,*/ useReducer } from "react"; //(1)
 import shoppingCartReducer from "./CartReducer.js";
+import actionCreator from "./CartAction.js";
 
 //Default Context (2)
 //One benefit setting default is get better autocompletion when you try access the context from component 
@@ -66,23 +67,12 @@ const CartContextProvider = ({ children }) => { //5
 	const [shoppingCartState, ShoppingCartDispatch] = useReducer(shoppingCartReducer, initialState); //6
 
 	function handleAddItemToCart(id) {
-		const action = {
-			type: "ADD_ITEM",
-			payload: {
-				id
-			}
-		}
+		const action = actionCreator().addItemToCart(id);
 		ShoppingCartDispatch(action);
 	}
 
 	function handleUpdateCartItemQuantity(productId, amount) {
-		const action = {
-			type: "UPDATE_ITEM_QUANTITY",
-			payload: {
-				productId,
-				amount
-			}
-		}
+		const action = actionCreator().updateItemQuantity(productId, amount);
 		ShoppingCartDispatch(action);
 	}
 
