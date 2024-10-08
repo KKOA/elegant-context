@@ -12,6 +12,13 @@
 
 import { DUMMY_PRODUCTS } from '../data/dummy-products.js';
 
+function getCartItemIndex(items, id) {
+	const existingCartItemIndex = items.findIndex(
+		(cartItem) => cartItem.id === id
+	);
+	return existingCartItemIndex;
+}
+
 //state is latest state
 //action used update state
 const shoppingCartReducer = (state, action) => {
@@ -21,9 +28,7 @@ const shoppingCartReducer = (state, action) => {
 			{
 				updatedItems = [...state.items];
 
-				const existingCartItemIndex = updatedItems.findIndex(
-					(cartItem) => cartItem.id === action.payload.id
-				);
+				const existingCartItemIndex = getCartItemIndex(updatedItems, action.payload.id);
 				const existingCartItem = updatedItems[existingCartItemIndex];
 
 				if (existingCartItem) {
@@ -50,9 +55,7 @@ const shoppingCartReducer = (state, action) => {
 		case "UPDATE_ITEM_QUANTITY":
 			{
 				updatedItems = [...state.items];
-				const updatedItemIndex = updatedItems.findIndex(
-					(item) => item.id === action.payload.productId
-				);
+				const updatedItemIndex = getCartItemIndex(updatedItems, action.payload.productId)
 
 				const updatedItem = {
 					...updatedItems[updatedItemIndex],
