@@ -29,7 +29,7 @@ The default value set when creating the context is only used if a component that
 */
 const CartContext = createContext(defaultCartContext); // 3
 
-export { defaultCartContext, CartContext }; // 4
+export { CartContext }; // 4
 
 /*
 Reducer is defined outside of ContextProvider component
