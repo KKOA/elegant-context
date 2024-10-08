@@ -18,55 +18,59 @@ const shoppingCartReducer = (state, action) => {
 	let updatedItems;
 	switch (action.type) {
 		case "ADD_ITEM":
-			updatedItems = [...state.items];
+			{
+				updatedItems = [...state.items];
 
-			const existingCartItemIndex = updatedItems.findIndex(
-				(cartItem) => cartItem.id === action.payload.id
-			);
-			const existingCartItem = updatedItems[existingCartItemIndex];
+				const existingCartItemIndex = updatedItems.findIndex(
+					(cartItem) => cartItem.id === action.payload.id
+				);
+				const existingCartItem = updatedItems[existingCartItemIndex];
 
-			if (existingCartItem) {
-				const updatedItem = {
-					...existingCartItem,
-					quantity: existingCartItem.quantity + 1,
+				if (existingCartItem) {
+					const updatedItem = {
+						...existingCartItem,
+						quantity: existingCartItem.quantity + 1,
+					};
+					updatedItems[existingCartItemIndex] = updatedItem;
+				} else {
+					const product = DUMMY_PRODUCTS.find((product) => product.id === action.payload.id);
+					updatedItems.push({
+						id: action.payload.id,
+						name: product.title,
+						price: product.price,
+						quantity: 1,
+					});
+				}
+
+				return {
+					...state,
+					items: updatedItems,
 				};
-				updatedItems[existingCartItemIndex] = updatedItem;
-			} else {
-				const product = DUMMY_PRODUCTS.find((product) => product.id === action.payload.id);
-				updatedItems.push({
-					id: action.payload.id,
-					name: product.title,
-					price: product.price,
-					quantity: 1,
-				});
 			}
-
-			return {
-				...state,
-				items: updatedItems,
-			};
 		case "UPDATE_ITEM_QUANTITY":
-			updatedItems = [...state.items];
-			const updatedItemIndex = updatedItems.findIndex(
-				(item) => item.id === action.payload.productId
-			);
+			{
+				updatedItems = [...state.items];
+				const updatedItemIndex = updatedItems.findIndex(
+					(item) => item.id === action.payload.productId
+				);
 
-			const updatedItem = {
-				...updatedItems[updatedItemIndex],
-			};
+				const updatedItem = {
+					...updatedItems[updatedItemIndex],
+				};
 
-			updatedItem.quantity += action.payload.amount;
+				updatedItem.quantity += action.payload.amount;
 
-			if (updatedItem.quantity <= 0) {
-				updatedItems.splice(updatedItemIndex, 1);
-			} else {
-				updatedItems[updatedItemIndex] = updatedItem;
+				if (updatedItem.quantity <= 0) {
+					updatedItems.splice(updatedItemIndex, 1);
+				} else {
+					updatedItems[updatedItemIndex] = updatedItem;
+				}
+
+				return {
+					...state,
+					items: updatedItems,
+				};
 			}
-
-			return {
-				...state,
-				items: updatedItems,
-			};
 	}
 	return state;
 }
